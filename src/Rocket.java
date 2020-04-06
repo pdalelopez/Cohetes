@@ -16,7 +16,7 @@ public class Rocket
 	{	
 		this.setCode(code);
 		this.setPropellerQuantity(propellerQuantity);
-		this.setPowers(new ArrayList<Integer>());
+		this.setPowers(new ArrayList<Integer>(propellerQuantity));
 		
 	}
 	public Rocket(String code,int propellerQuantity, List<Integer> powers) 
