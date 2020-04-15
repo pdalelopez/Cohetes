@@ -50,56 +50,26 @@ public class Rocket
 	{
 		this.propellers = propellers;
 	}
+	
+	
 //--------------------------------------------------------------------
 
-	public void accelerate(int propellerNumber) 
+	public void accelerate(int targetPower) 
 {
-	Propeller propellerSelection;
-	propellerSelection = getPropellers().get(propellerNumber-1);
-	
-	System.out.println("Propeller "+propellerNumber+": "+propellerSelection);
-	System.out.println("Potencia objetivo: "+ propellerSelection.getMaxPower());
-	System.out.println("Acelerating");
-	
-	
-	for (int i = propellerSelection.getCurrentPower(); i < propellerSelection.getMaxPower(); i+=10)
+	for (Propeller propeller : getPropellers())
 	{
-		propellerSelection.setCurrentPower(propellerSelection.getCurrentPower()+10);
-		System.out.println(propellerSelection.getCurrentPower());
-		
-		try
-		{
-			Thread.sleep(3000);
-		} catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
+		propeller.setTargetPower(targetPower);
 	}
 	
 }
 
-public void decelerate(int propellerNumber) 
+public void decelerate(int targetPower) 
 {
-	Propeller propellerSelection;
-	propellerSelection = getPropellers().get(propellerNumber-1);
-	
-	System.out.println("Propeller "+propellerNumber+": "+propellerSelection);
-	System.out.println("Potencia objetivo: 0");
-	System.out.println("Decelerating");
-	
-	for (int i = propellerSelection.getCurrentPower(); i > 0; i-=10)
+	for (Propeller propeller : getPropellers())
 	{
-		propellerSelection.setCurrentPower(propellerSelection.getCurrentPower()-10);
-		System.out.println(propellerSelection.getCurrentPower());
-		
-		try
-		{
-			Thread.sleep(3000);
-		} catch (InterruptedException e)
-		{
-			e.printStackTrace();
-		}
+		propeller.setTargetPower(targetPower);
 	}
+	
 }
 	
 }

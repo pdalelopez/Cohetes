@@ -1,7 +1,7 @@
 
 public class Propeller
 {
-private int maxPower, currentPower;
+private int maxPower, currentPower, targetPower;
 
 public Propeller(int maxPower)
 {
@@ -25,6 +25,15 @@ public int getCurrentPower()
 public void setCurrentPower(int currentPower)
 {
 	this.currentPower = currentPower;
+}
+public int getTargetPower()
+{
+	return targetPower;
+}
+
+public void setTargetPower(int targetPower)
+{
+	this.targetPower = targetPower;
 }
 @Override
 public String toString()
