@@ -52,18 +52,7 @@ public class Rocket
 	}
 //--------------------------------------------------------------------
 
-	public void accelerate(int targetPower) 
-	{
-		for (int i = 0; i < getPropellerQuantity(); i++)
-		{
-			Propeller propellerSelection;
-			propellerSelection = getPropellers().get(i);
-			Runnable r = new PropellerThread(propellerSelection,targetPower, i+1);
-			Thread t = new Thread(r);
-			t.start();
-		}
-	}
-	/*public void accelerate(int propellerNumber) 
+	public void accelerate(int propellerNumber) 
 {
 	Propeller propellerSelection;
 	propellerSelection = getPropellers().get(propellerNumber-1);
@@ -87,7 +76,7 @@ public class Rocket
 		}
 	}
 	
-}*/
+}
 
 public void decelerate(int propellerNumber) 
 {

@@ -38,14 +38,13 @@ public class Main
 		//Orders-------------------------------------------
 		
 		
-		/*System.out.println("---------------------------");
+		System.out.println("---------------------------");
 		System.out.println("Rocket: "+rocket1.getCode());
 		rocket1.accelerate(3);
 		System.out.println("---------------------------");
 		System.out.println("Rocket: "+rocket1.getCode());
 		rocket1.decelerate(3);
-		*/
-		rocket1.accelerate(90);
+		
 	}
 
 }
