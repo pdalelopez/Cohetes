@@ -6,7 +6,7 @@ public class Rocket
 {
 	private String code;
 	private int propellerQuantity;
-	private List<Integer> powers;
+	private List<Propeller> propellers;
 	
 	public Rocket() 
 	{
@@ -16,14 +16,14 @@ public class Rocket
 	{	
 		this.setCode(code);
 		this.setPropellerQuantity(propellerQuantity);
-		this.setPowers(new ArrayList<Integer>(propellerQuantity));
+		this.setPropellers(new ArrayList<Propeller>(propellerQuantity));
 		
 	}
-	public Rocket(String code,int propellerQuantity, List<Integer> powers) 
+	public Rocket(String code,int propellerQuantity, List<Propeller> propellers) 
 	{	
 		setCode(code);
 		setPropellerQuantity(propellerQuantity);
-		setPowers(powers);
+		setPropellers(propellers);
 	}
 
 	public String getCode()
@@ -42,14 +42,77 @@ public class Rocket
 	{
 		this.propellerQuantity = propellerQuantity;
 	}
-	public List<Integer> getPowers()
+	public List<Propeller> getPropellers()
 	{
-		return powers;
+		return propellers;
 	}
-	public void setPowers(List<Integer> powers)
+	public void setPropellers(List<Propeller> propellers)
 	{
-		this.powers = powers;
+		this.propellers = propellers;
 	}
+//--------------------------------------------------------------------
+
+	public void accelerate(int targetPower) 
+	{
+		for (int i = 0; i < getPropellerQuantity(); i++)
+		{
+			Propeller propellerSelection;
+			propellerSelection = getPropellers().get(i);
+			Runnable r = new PropellerThread(propellerSelection,targetPower, i+1);
+			Thread t = new Thread(r);
+			t.start();
+		}
+	}
+	/*public void accelerate(int propellerNumber) 
+{
+	Propeller propellerSelection;
+	propellerSelection = getPropellers().get(propellerNumber-1);
+	
+	System.out.println("Propeller "+propellerNumber+": "+propellerSelection);
+	System.out.println("Potencia objetivo: "+ propellerSelection.getMaxPower());
+	System.out.println("Acelerating");
+	
+	
+	for (int i = propellerSelection.getCurrentPower(); i < propellerSelection.getMaxPower(); i+=10)
+	{
+		propellerSelection.setCurrentPower(propellerSelection.getCurrentPower()+10);
+		System.out.println(propellerSelection.getCurrentPower());
+		
+		try
+		{
+			Thread.sleep(3000);
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+}*/
+
+public void decelerate(int propellerNumber) 
+{
+	Propeller propellerSelection;
+	propellerSelection = getPropellers().get(propellerNumber-1);
+	
+	System.out.println("Propeller "+propellerNumber+": "+propellerSelection);
+	System.out.println("Potencia objetivo: 0");
+	System.out.println("Decelerating");
+	
+	for (int i = propellerSelection.getCurrentPower(); i > 0; i-=10)
+	{
+		propellerSelection.setCurrentPower(propellerSelection.getCurrentPower()-10);
+		System.out.println(propellerSelection.getCurrentPower());
+		
+		try
+		{
+			Thread.sleep(3000);
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
+	}
+}
+	
 }
 
 

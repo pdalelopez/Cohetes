@@ -11,30 +11,41 @@ public class Main
 		Rocket rocket1,rocket2;
 		rocket1 = new Rocket("32WESSDS",3);
 		rocket2 = new Rocket("LDSFJA32",6);
-		System.out.println("the rocket with code: "+rocket1.getCode()+" has: "+rocket1.getPropellerQuantity()+" propeller.");
-		System.out.println("the rocket with code: "+rocket2.getCode()+" has: "+rocket2.getPropellerQuantity()+" propeller.");
 		
 		//Fase 2
 		
-		List<Integer> powersRocket1, powersRocket2;
+		List<Propeller> propellersRocket1, propellersRocket2;
 		
-		powersRocket1 = new ArrayList<Integer>(rocket1.getPropellerQuantity());
-		powersRocket1.add(10);
-		powersRocket1.add(30);
-		powersRocket1.add(80);
-		rocket1.setPowers(powersRocket1);
+		propellersRocket1 = new ArrayList<Propeller>(rocket1.getPropellerQuantity());
+		propellersRocket1.add(new Propeller (10));
+		propellersRocket1.add(new Propeller (30));
+		propellersRocket1.add(new Propeller (80));
 		
-		powersRocket2 = new ArrayList<Integer>(rocket2.getPropellerQuantity());
-		powersRocket2.add(30);
-		powersRocket2.add(40);
-		powersRocket2.add(50);
-		powersRocket2.add(50);
-		powersRocket2.add(30);
-		powersRocket2.add(10);
-		rocket2.setPowers(powersRocket2);
+		rocket1.setPropellers(propellersRocket1);
 		
-		System.out.println("the rocket : "+rocket1.getCode()+" has: "+rocket1.getPropellerQuantity()+" propeller with these powers: "+rocket1.getPowers());
-		System.out.println("the rocket : "+rocket2.getCode()+" has: "+rocket2.getPropellerQuantity()+" propeller with these powers: "+rocket2.getPowers());
+		propellersRocket2 = new ArrayList<Propeller>(rocket2.getPropellerQuantity());
+		propellersRocket2.add(new Propeller(30));
+		propellersRocket2.add(new Propeller(40));
+		propellersRocket2.add(new Propeller(50));
+		propellersRocket2.add(new Propeller(50));
+		propellersRocket2.add(new Propeller(30));
+		propellersRocket2.add(new Propeller(10));
+		rocket2.setPropellers(propellersRocket2);
+		
+		System.out.println("the rocket : "+rocket1.getCode()+" has: "+rocket1.getPropellerQuantity()+" propeller with these powers: "+rocket1.getPropellers());
+		System.out.println("the rocket : "+rocket2.getCode()+" has: "+rocket2.getPropellerQuantity()+" propeller with these powers: "+rocket2.getPropellers());
+	
+		//Orders-------------------------------------------
+		
+		
+		/*System.out.println("---------------------------");
+		System.out.println("Rocket: "+rocket1.getCode());
+		rocket1.accelerate(3);
+		System.out.println("---------------------------");
+		System.out.println("Rocket: "+rocket1.getCode());
+		rocket1.decelerate(3);
+		*/
+		rocket1.accelerate(90);
 	}
 
 }
