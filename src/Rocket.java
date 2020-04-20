@@ -54,22 +54,14 @@ public class Rocket
 	
 //--------------------------------------------------------------------
 
-	public void accelerate(int targetPower) 
+	public void accelerate( AccelerationsThread t) 
 {
-	for (Propeller propeller : getPropellers())
-	{
-		propeller.setTargetPower(targetPower);
-	}
-	
+	t.start();
 }
 
-public void decelerate(int targetPower) 
+public void decelerate( DecelerationsThread t) 
 {
-	for (Propeller propeller : getPropellers())
-	{
-		propeller.setTargetPower(targetPower);
-	}
-	
+	t.start();
 }
 	
 }

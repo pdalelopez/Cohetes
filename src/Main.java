@@ -17,7 +17,7 @@ public class Main
 		List<Propeller> propellersRocket1, propellersRocket2;
 		
 		propellersRocket1 = new ArrayList<Propeller>(rocket1.getPropellerQuantity());
-		propellersRocket1.add(new Propeller (20));
+		propellersRocket1.add(new Propeller (10));
 		propellersRocket1.add(new Propeller (50));
 		propellersRocket1.add(new Propeller (80));
 		
@@ -39,26 +39,18 @@ public class Main
 		AccelerationsThread ta1 = new AccelerationsThread(rocket1,1);
 		AccelerationsThread ta2 = new AccelerationsThread(rocket1,2);
 		AccelerationsThread ta3 = new AccelerationsThread(rocket1,3);
-		
-		rocket1.accelerate(100);
-		
-		ta1.start();
-		ta2.start();
-		ta3.start();
-		
 		DecelerationsThread ta4 = new DecelerationsThread(rocket1,1);
 		DecelerationsThread ta5 = new DecelerationsThread(rocket1,2);
 		DecelerationsThread ta6 = new DecelerationsThread(rocket1,3);
 		
-		rocket1.decelerate(20);
+		rocket1.getPropellers().get(0).setTargetPower(100);
+		rocket1.getPropellers().get(1).setTargetPower(100);
+		rocket1.getPropellers().get(2).setTargetPower(100);
 		
-		while(!ta1.isAlive()) 
-		{
-			ta4.start();	
-		}
-		ta4.start();
-		ta5.start();
-		ta6.start();
+		rocket1.accelerate(ta1);
+		rocket1.accelerate(ta2);
+		rocket1.accelerate(ta3);
+		
 		
 
  
@@ -89,9 +81,9 @@ class AccelerationsThread extends Thread
 			if (propellerSelection.getTargetPower()>propellerSelection.getMaxPower()) 
 			{
 			
-				for (int i = propellerSelection.getCurrentPower(); i < propellerSelection.getMaxPower(); i+=10)
+				for (int i = propellerSelection.getCurrentPower(); i < propellerSelection.getMaxPower(); i+=1)
 				{
-					propellerSelection.setCurrentPower(propellerSelection.getCurrentPower()+10);
+					propellerSelection.setCurrentPower(propellerSelection.getCurrentPower()+1);
 					System.out.println(getName()+"||"+"Propulsor "+propellerNumber+": "+"Potencia objetivo: "+ propellerSelection.getTargetPower()+" Potencia actual: "+propellerSelection.getCurrentPower());
 					
 					try
@@ -104,9 +96,9 @@ class AccelerationsThread extends Thread
 				}
 			}else 
 			{
-				for (int i = propellerSelection.getCurrentPower(); i < propellerSelection.getMaxPower(); i+=10)
+				for (int i = propellerSelection.getCurrentPower(); i < propellerSelection.getMaxPower(); i+=1)
 				{
-					propellerSelection.setCurrentPower(propellerSelection.getCurrentPower()+10);
+					propellerSelection.setCurrentPower(propellerSelection.getCurrentPower()+1);
 					System.out.println(getName()+"||"+"Propulsor "+propellerNumber+": "+"Potencia objetivo: "+ propellerSelection.getMaxPower()+" Potencia actual: "+propellerSelection.getCurrentPower());
 					
 					try
