@@ -1,12 +1,28 @@
 
-public class Propeller
+public class Propeller extends Thread
 {
-private int maxPower, currentPower, targetPower;
+private int propellerNumber, maxPower, currentPower, targetPower;
 
-public Propeller(int maxPower)
+public Propeller(int maxPower,int propellerNumber)
 {
 	setCurrentPower(0);
 	setMaxPower(maxPower);
+	setPropellerNumber(propellerNumber);
+}
+public Propeller(Propeller propeller)
+{
+	setCurrentPower(propeller.getCurrentPower());
+	setMaxPower(propeller.getMaxPower());
+	setPropellerNumber(propeller.getPropellerNumber());
+}
+public void setPropellerNumber(int propellerNumber)
+{
+	this.propellerNumber = propellerNumber;
+	
+}
+public int getPropellerNumber()
+{
+	return propellerNumber;
 }
 public int getMaxPower()
 {
@@ -41,6 +57,10 @@ public String toString()
 	return "[maxPower=" + maxPower + ", currentPower=" + currentPower + "]";
 }
 
+public void run() 
+{
 }
+}
+
 
 
